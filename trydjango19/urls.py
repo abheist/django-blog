@@ -21,5 +21,5 @@ from posts.views import posts_home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^posts/$', posts_home),
+    url(r'^posts/$', posts_home)
 ]
