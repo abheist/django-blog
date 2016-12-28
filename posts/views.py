@@ -36,7 +36,7 @@ def posts_list(request):
         "object_list": queryset,
         "title": "List"
     }
-    return render(request, "index.html", context)
+    return render(request, "base.html", context)
 
 
 def posts_update(request, id=None):
