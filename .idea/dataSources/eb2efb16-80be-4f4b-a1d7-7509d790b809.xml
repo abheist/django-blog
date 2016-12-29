@@ -418,14 +418,18 @@ model</ColNames>
       <DataType>DATETIME(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="91" parent="13">
+    <column id="91" parent="13" name="image">
+      <Position>5</Position>
+      <DataType>VARCHAR(100)(0,-1)|12</DataType>
+    </column>
+    <key id="92" parent="13">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="92" parent="14" name="name">
+    <column id="93" parent="14" name="name">
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="93" parent="14" name="seq">
+    <column id="94" parent="14" name="seq">
       <Position>1</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
