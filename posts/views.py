@@ -7,7 +7,7 @@ from .forms import PostForm
 from .models import Post
 
 
-def posts_create(request):
+def post_create(request):
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -20,8 +20,8 @@ def posts_create(request):
     return render(request, "post_form.html", context)
 
 
-def posts_detail(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+def post_detail(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     context = {
         "title": "Detail",
         "instance": instance
@@ -29,7 +29,7 @@ def posts_detail(request, id=None):
     return render(request, "post_detail.html", context)
 
 
-def posts_list(request):
+def post_list(request):
     queryset_list = Post.objects.all()  # .order_by("-timestamp")
     paginator = Paginator(queryset_list, 5)
     page_request_var = "page"
@@ -48,8 +48,8 @@ def posts_list(request):
     return render(request, "post_list.html", context)
 
 
-def posts_update(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+def post_update(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -64,8 +64,8 @@ def posts_update(request, id=None):
     return render(request, "post_form.html", context)
 
 
-def posts_delete(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+def post_delete(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, "Successfully deleted!")
     return redirect("posts:list")
