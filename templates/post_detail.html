@@ -8,19 +8,14 @@
         <img src="{{ instance.image.url }}" alt="{{ instance.title }}"><br>
     {% endif %}
     {{ instance.title }}<br>
-    {{ instance.content }}<br>
     {{ instance.timestamp }}<br>
     {{ instance.updated }}<br>
     {{ instance.id }}<br>
     {% if instance.user.get_full_name %}
         {{ instance.user.get_full_name }}<br>
     {% endif %}
-
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
-        Facebook
-    </a>
-    <a href="https://twitter.com/home?status=I'm%20going%20to%20learn%20to%20Code...%20Come%20build%20an%20web%20apsp%20with%20me!%20%23CFE%20and%20@yabhis%20{{ request.build_absolute_uri }}">
-        Twitter
-    </a>
-    <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>Google</a>
+    <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button"
+         data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+    <p>{{ instance.content }}</p>
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
 {% endblock content %}
