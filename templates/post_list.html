@@ -8,7 +8,7 @@
                 <img src="{{ obj.image.url }}" alt=""><br>
             {% endif %}
             <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
-            {{ obj.timestamp | timesince }}
+            {{ obj.publish }}
             {% if obj.user.get_full_name %}{{ obj.user.get_full_name }}{% endif %}
             {{ obj.content | linebreaks | truncatechars:120 }}
         </div>

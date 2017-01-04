@@ -8,7 +8,8 @@
         <img src="{{ instance.image.url }}" alt="{{ instance.title }}"><br>
     {% endif %}
     {{ instance.title }}<br>
-    {{ instance.timestamp }}<br>
+    {% if instance.draft %}Draft{% endif %}
+    {{ instance.publish }}<br>
     {{ instance.updated }}<br>
     {{ instance.id }}<br>
     {% if instance.user.get_full_name %}
