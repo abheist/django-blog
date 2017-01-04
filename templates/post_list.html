@@ -5,13 +5,12 @@
     {% for obj in object_list %}
         <div>
             {% if obj.image %}
-                <img src="{{ obj.image.url }}" alt="">
+                <img src="{{ obj.image.url }}" alt=""><br>
             {% endif %}
             <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
-            {{ obj.content }}
-            {{ obj.timestamp }}
-            {{ obj.updated }}
-            {{ obj.id }}
+            {{ obj.timestamp | timesince }}
+            {% if obj.user.get_full_name %}{{ obj.user.get_full_name }}{% endif %}
+            {{ obj.content | linebreaks | truncatechars:120 }}
         </div>
     {% endfor %}
     <div class="pagination">
