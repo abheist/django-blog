@@ -2,12 +2,18 @@
 
 {% block content %}
     <h1>{{ title }} is working</h1>
+    <form action="" method="GET">
+        <input type="text" name="q" placeholder="Search post" value="{{ request.GET.q }}"/>
+        <input type="submit" value="Search">
+    </form>
     {% for obj in object_list %}
         <div>
             {% if obj.image %}
                 <img src="{{ obj.image.url }}" alt=""><br>
             {% endif %}
             <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
+            {% if obj.draft %}draft {% endif %}
+            {% if obj.publish > today %} Future post{% endif %}
             {{ obj.publish }}
             {% if obj.user.get_full_name %}{{ obj.user.get_full_name }}{% endif %}
             {{ obj.content | linebreaks | truncatechars:120 }}
@@ -16,14 +22,14 @@
     <div class="pagination">
         <span class="step-links">
             {% if object_list.has_prevoius %}
-                <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}">previous</a>
+                <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
             {% endif %}
             <span class="current">
                 Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}
             </span>
 
             {% if object_list.has_next %}
-                <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+                <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
             {% endif %}
         </span>
     </div>
